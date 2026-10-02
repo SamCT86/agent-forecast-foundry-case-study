@@ -1,6 +1,6 @@
 # Engineering decisions and trade-offs
 
-This file explains the main requirements behind Agent Forecast Foundry in plain language.
+This file explains the main requirements behind Agent Cash Cow OS in plain language.
 
 I use AI tools heavily during implementation, but I remain responsible for the product boundary, architecture constraints, review, debugging, acceptance criteria, and quality bar.
 
