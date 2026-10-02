@@ -1,6 +1,6 @@
 # Verification approach
 
-Agent Forecast Foundry treats forecast quality as something that must be measured, not inferred from how convincing an answer looks.
+Agent Cash Cow OS treats forecast quality as something that must be measured, not inferred from how convincing an answer looks.
 
 ## What needs to be true
 
