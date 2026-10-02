@@ -1,27 +1,29 @@
-# Current public status - 2026-09-20
+# Current public status — 2026-10-02
 
-**Public reference: active. Commercial product claims: not made.**
+**Public reference: active. Commercial product track: Agent Cash Cow OS.**
 
-Agent Forecast Foundry is maintained as a public engineering reference for how I approach forecast evidence, agent verification, and evaluation. It is useful as proof of engineering and product reasoning, but it should not be read as a claim that a forecasting product is launched, commercially validated, or proven to outperform alternatives.
+This repository is the bounded public engineering reference for Agent Cash Cow OS. The production OS remains private.
+
+The current product hypothesis centers on forecast evidence and measurable decision advantage for autonomous agents. The public code demonstrates selected verification and runtime patterns; it does **not** prove forecast advantage, paid adoption, production-scale operation or market demand.
 
 ## What is real today
 
 - The public runtime reference is runnable and tested.
 - Concurrent attempts for one `runId` are coordinated with a single-host filesystem claim; a two-process test verifies one provider execution and one journal record.
-- The broader private work includes request, payment, work, outcome, and settlement mechanics.
-- Forecast identity, provenance, calibration, and held-out evaluation remain important proof requirements.
-- Measured forecast advantage, a qualified external buyer, paid repeat use, and production forecast deployment are not proven here.
+- The private Agent Cash Cow OS work includes broader request, payment, work, outcome and settlement mechanics.
+- Forecast identity, provenance, calibration and held-out evaluation remain important proof requirements.
+- Measured forecast advantage, a qualified external buyer, paid repeat use and production forecast deployment are not proven by this repository.
 
-## Why this file exists
+## Commercial boundary
 
-I want a reviewer to be able to tell the difference between **what has been built** and **what is still a hypothesis** without reading between the lines.
+Agent Cash Cow OS is one of the two commercial product tracks currently presented publicly, alongside MachineOutcome.
 
-This repository is evidence of system design, implementation, and verification discipline. It is not an active launch announcement.
+That commercial focus does not widen the claims made by this reference. The private system, live evidence, orchestration, benchmark logic, credentials and commercial controls stay private.
 
 ## Fast review path
 
-1. [`README.md`](README.md) - what the public reference does and how to run it.
-2. [`PROOF.md`](PROOF.md) - what is implemented and what remains unproven.
-3. [`examples/sanitized-forecast-record.json`](examples/sanitized-forecast-record.json) - a synthetic sequencing example.
-4. [`docs/VERIFICATION.md`](docs/VERIFICATION.md) - how stronger claims would need to be tested.
-5. [`PUBLIC_BOUNDARY.md`](PUBLIC_BOUNDARY.md) - what stays public and what stays private.
+1. [`README.md`](README.md) — what the public reference does and how to run it.
+2. [`PROOF.md`](PROOF.md) — what is implemented and what remains unproven.
+3. [`examples/sanitized-forecast-record.json`](examples/sanitized-forecast-record.json) — a synthetic sequencing example.
+4. [`docs/VERIFICATION.md`](docs/VERIFICATION.md) — how stronger claims would need to be tested.
+5. [`PUBLIC_BOUNDARY.md`](PUBLIC_BOUNDARY.md) — what stays public and what stays private.
