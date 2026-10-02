@@ -1,28 +1,29 @@
-# Agent Forecast Foundry - a small reference for safer AI agent runs
+# Agent Cash Cow OS — Forecast Evidence public reference
 
 [![Public Agent Runtime Reference](https://github.com/SamCT86/agent-forecast-foundry-case-study/actions/workflows/reference-tests.yml/badge.svg)](https://github.com/SamCT86/agent-forecast-foundry-case-study/actions/workflows/reference-tests.yml)
 
-**Status:** runnable public engineering reference  
-**Portfolio:** https://sarmadtawfeek.se/
+**Status:** runnable public engineering reference for Agent Cash Cow OS  
+**Commercial product:** Agent Cash Cow OS  
+**Production system:** private
 
-I use this repository to show one practical idea: a model returning an answer does not mean the whole agent run should be trusted.
+Agent Cash Cow OS is one of the two commercial product tracks I present publicly.
 
-A run can still be unsafe or unusable if it uses the wrong evidence, exceeds a cost or latency limit, returns incomplete provider state, or stores data that should not be persisted. This reference makes those checks visible in code.
+The current product hypothesis centers on **forecast evidence and measurable decision advantage for autonomous agents**. This repository does not expose the private production OS. It publishes one bounded engineering pattern from that direction: an agent run should not be accepted merely because a model returned an answer.
 
-## How a run moves through the system
+A run can still be unsafe or unusable if it uses the wrong evidence, exceeds a cost or latency limit, returns incomplete provider state, or stores data that should not be persisted. This reference makes those checks reviewable in code.
+
+## How a run moves through the reference
 
 ```text
 request + allowed evidence
--> runId + request-fingerprint claim/replay guard (single host)
--> OpenAI Responses API adapter
--> strict JSON Schema output
+-> runId + request-fingerprint claim/replay guard
+-> model/provider adapter
+-> strict structured output
 -> provider status + token/cost/latency data
 -> deterministic verification
 -> ACCEPTED / ABSTAINED / fail closed
--> sanitized JSONL journal
+-> sanitized journal
 ```
-
-The provider adapter calls `POST /v1/responses`, sets `store: false`, asks for strict structured output, applies a timeout, and converts provider usage into a caller-supplied cost estimate.
 
 ## Try it
 
@@ -33,22 +34,18 @@ npm test
 npm run eval
 ```
 
-`npm test` runs the reference test suite. `npm run eval` runs a small synthetic fixture set and reports a result for each case.
-
-The default test and CI paths do **not** make a live model call or spend API budget. The provider boundary is injected so request shape, schema handling, telemetry, and failure behavior remain deterministic in CI.
+The default test and CI paths do **not** make a live model call or spend API budget. The provider boundary is injected so request shape, schema handling, telemetry and failure behavior remain deterministic in CI.
 
 ## What to inspect
 
-- [`src/runtime-gate.mjs`](src/runtime-gate.mjs) - provider adapter, runtime checks, cost/latency accounting, sanitized journaling, and eval logic.
-- [`test/execution-path.test.mjs`](test/execution-path.test.mjs) - request boundary, persistence, and transport-failure tests.
-- [`test/runtime-gate.test.mjs`](test/runtime-gate.test.mjs) - post-model safety checks.
-- [`eval/fixtures.mjs`](eval/fixtures.mjs) - synthetic eval cases.
-- [`tools/run-eval.mjs`](tools/run-eval.mjs) - reviewer-facing eval command.
-- [`PUBLIC_BOUNDARY.md`](PUBLIC_BOUNDARY.md) - what is public and what stays private.
-- [`docs/VERIFICATION.md`](docs/VERIFICATION.md) - how stronger claims would need to be tested.
-- [`docs/CONCURRENCY.md`](docs/CONCURRENCY.md) - the exact single-host claim/replay boundary and its non-guarantees.
-
-If you want to review the flow, start at `executeVerifiedRun`, follow the provider call into `createOpenAIResponsesProvider`, then inspect the verification gate and the journal record that is allowed to survive it.
+- [`src/runtime-gate.mjs`](src/runtime-gate.mjs) — provider adapter, runtime checks, cost/latency accounting, sanitized journaling and eval logic.
+- [`test/execution-path.test.mjs`](test/execution-path.test.mjs) — request boundary, persistence and transport-failure tests.
+- [`test/runtime-gate.test.mjs`](test/runtime-gate.test.mjs) — post-model safety checks.
+- [`eval/fixtures.mjs`](eval/fixtures.mjs) — synthetic eval cases.
+- [`tools/run-eval.mjs`](tools/run-eval.mjs) — reviewer-facing eval command.
+- [`PUBLIC_BOUNDARY.md`](PUBLIC_BOUNDARY.md) — what is public and what stays private.
+- [`docs/VERIFICATION.md`](docs/VERIFICATION.md) — how stronger claims would need to be tested.
+- [`docs/CONCURRENCY.md`](docs/CONCURRENCY.md) — the exact single-host claim/replay boundary and its non-guarantees.
 
 ## Failure cases this reference handles
 
@@ -56,39 +53,43 @@ The run fails closed when:
 
 - output cites evidence that was not bound to the run;
 - provider input tries to use an unbound reference;
-- provider status is not `complete`;
+- provider status is not complete;
 - the provider request fails;
 - latency or estimated cost exceeds the declared limit;
 - a probability is invalid for the chosen decision state;
 - hidden reasoning or secret-bearing fields would be persisted;
 - structured output cannot be parsed under the expected contract;
 - a persisted `runId` is reused with a different request fingerprint;
-- an active concurrent claim for the same `runId` carries a conflicting request fingerprint;
-- a stale claim for the same `runId` carries a conflicting request fingerprint.
+- an active or stale conflicting claim attempts to reuse the same `runId`.
 
-An incomplete provider run is rejected **before** the JSONL journal is written. An exact sequential retry of an already-persisted `runId` returns the prior verified record without calling the provider again.
+An incomplete provider run is rejected before the journal is written. An exact sequential retry of an already-persisted `runId` returns the prior verified record without calling the provider again.
 
-## What the eval proves - and what it does not
+## What this proves — and what it does not
 
-The included fixtures test accepted, abstained, and fail-closed behavior against synthetic records. They are useful regression tests for the runtime.
+The fixtures test accepted, abstained and fail-closed behavior against synthetic records. They provide regression evidence for the published runtime pattern.
 
-They do **not** prove that the underlying forecasts are accurate, better than alternatives, production-scale, commercially adopted, or running with live-provider cost/latency measurements in public CI. The runtime also uses an atomic claim file to coordinate concurrent attempts for the same `runId` across Node processes sharing one local filesystem. Tests verify one provider execution for two concurrent processes, fail-closed active and stale fingerprint conflicts, stale-claim recovery for the same request, and claim release after provider failure. This is **not** a distributed exactly-once guarantee: separate hosts/filesystems and a crash after an external provider side effect but before journal persistence still require reconciliation.
+They do **not** prove forecast accuracy, production-scale reliability, commercial demand, paid adoption, or live-provider economics. Those claims require separate evidence.
 
-## Public and private boundary
+## Public / private boundary
 
-This repository is a standalone reference for the engineering pattern. It is not a copy of the private product runtime, prompts, benchmark logic, live evidence, orchestration, or commercial controls.
+The private Agent Cash Cow OS repository contains the canonical product work and remains private.
 
-No credential is stored by the adapter. Raw evidence is sent only to the configured provider call and is intentionally left out of the persisted run record. Persisted provider usage is allowlisted to input/output token counts; extra provider telemetry fields are discarded before journaling.
+Not published here:
 
-See [`PUBLIC_BOUNDARY.md`](PUBLIC_BOUNDARY.md) for the exact disclosure boundary.
+- private prompts, orchestration and benchmark logic;
+- live evidence or buyer data;
+- production credentials;
+- commercial controls;
+- unreleased product and routing logic.
 
-## Related work
+This public reference exists only to make a bounded part of the engineering approach inspectable.
 
-- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) - reconcile observed state before retrying a mutation.
-- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) - turn contract rules and meeting evidence into billability decisions.
-- [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) - verify that evidence belongs to the exact artifact being released.
-- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) - qualify market evidence before using it in a pricing decision.
+## Related commercial work
+
+- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — verify observed outcome before trusting success or retry.
+
+MachineOutcome and Agent Cash Cow OS are the two commercial product tracks currently presented publicly.
 
 ## AI-native accountability
 
-This reference is AI-assisted. My role is problem framing, system direction, acceptance criteria, testing and verification, and the final release judgment. It is not a claim that I manually wrote every line.
+This reference is AI-assisted. My role is problem framing, system direction, acceptance criteria, testing, verification and final release judgment. It is not a claim that I manually wrote every line.
