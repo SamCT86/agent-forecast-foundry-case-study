@@ -22,7 +22,19 @@ Agent Cash Cow OS now has three bounded public proof surfaces, and they answer d
 
 None of these surfaces is the private production OS, and none proves paid adoption, forecast advantage, customer ROI or production-scale economics. Those remain separate evidence requirements.
 
-If you are evaluating a concrete AI-agent workflow, use the Transaction Lab for the fast business-risk walkthrough, then inspect this repository for implementation-level proof. For a current engagement or technical discussion, use the [portfolio](https://sarmadtawfeek.se) or [email](mailto:sarmadtawfeek@gmail.com).
+If you are evaluating a concrete AI-agent workflow, use the Transaction Lab for the fast business-risk walkthrough, then inspect this repository for implementation-level proof.
+
+## Commercial entry point
+
+If you already run AI or integrations but do not fully trust their failure behavior, the closest current engagement is a **Reliability review**: failure, duplicate-action and handoff testing plus a prioritized action list.
+
+If the business problem is still unclear, start with a **Workflow check**: establish a baseline, identify the biggest leak, estimate potential and recommend the next step.
+
+Start with **2–3 sentences** about what is slow, expensive or unreliable. No technical brief or meeting is required to start, and no sensitive data should be sent yet. Scope and price are agreed before anything is ordered.
+
+[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://sarmadtawfeek.se)
+
+This entry path does not change the repository's evidence boundary: this reference still does **not** prove paid adoption, forecast advantage, customer ROI or production-scale economics.
 
 ## How a run moves through the reference
 
