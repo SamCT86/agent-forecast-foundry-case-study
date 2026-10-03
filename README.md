@@ -87,6 +87,7 @@ This public reference exists only to make a bounded part of the engineering appr
 ## Related commercial work
 
 - [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — verify observed outcome before trusting success or retry.
+- [Portfolio](https://sarmadtawfeek.se) — live public overview of the current product and engineering proof surface.
 
 MachineOutcome and Agent Cash Cow OS are the two commercial product tracks currently presented publicly.
 
