@@ -12,6 +12,17 @@ The current product hypothesis centers on **forecast evidence and measurable dec
 
 A run can still be unsafe or unusable if it uses the wrong evidence, exceeds a cost or latency limit, returns incomplete provider state, or stores data that should not be persisted. This reference makes those checks reviewable in code.
 
+## Start with the right proof surface
+
+Agent Cash Cow OS has two different public proof surfaces, and they answer different questions:
+
+- **[Interactive Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow)** — for a buyer or non-technical reviewer. It uses synthetic scenarios to show what happens when an autonomous agent faces payment acknowledgement ambiguity, incomplete provider readback, replay risk or missing outcome evidence. No account or real money is required.
+- **This GitHub repository** — for technical review. It focuses on forecast-evidence/runtime discipline: bound evidence, structured output, provider-state checks, cost/latency limits, replay/claim handling and deterministic acceptance.
+
+Neither surface is the private production OS, and neither proves paid adoption, forecast advantage, customer ROI or production-scale economics. Those remain separate evidence requirements.
+
+If you are evaluating a concrete AI-agent workflow, use the Transaction Lab for the fast business-risk walkthrough, then inspect this repository for implementation-level proof. For a current engagement or technical discussion, use the [portfolio](https://sarmadtawfeek.se) or [email](mailto:sarmadtawfeek@gmail.com).
+
 ## How a run moves through the reference
 
 ```text
