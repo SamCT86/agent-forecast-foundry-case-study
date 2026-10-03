@@ -32,7 +32,7 @@ If the business problem is still unclear, start with a **Workflow check**: estab
 
 Start with **2–3 sentences** about what is slow, expensive or unreliable. No technical brief or meeting is required to start, and no sensitive data should be sent yet. Scope and price are agreed before anything is ordered.
 
-[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://sarmadtawfeek.se)
+[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://www.sarmadtawfeek.com)
 
 This entry path does not change the repository's evidence boundary: this reference still does **not** prove paid adoption, forecast advantage, customer ROI or production-scale economics.
 
@@ -112,7 +112,7 @@ This public reference exists only to make a bounded part of the engineering appr
 
 - [Agent Cash Cow OS transaction reliability proof](https://github.com/SamCT86/agent-cash-cow-os) — synthetic payment-state reconciliation, replay containment and outcome-gated settlement proof.
 - [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — verify observed outcome before trusting success or retry.
-- [Portfolio](https://sarmadtawfeek.se) — live public overview of the current product and engineering proof surface.
+- [Portfolio](https://www.sarmadtawfeek.com) — live public overview of the current product and engineering proof surface.
 
 MachineOutcome and Agent Cash Cow OS are the two commercial product tracks currently presented publicly.
 
