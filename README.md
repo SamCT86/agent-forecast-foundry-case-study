@@ -16,7 +16,7 @@ A run can still be unsafe or unusable if it uses the wrong evidence, exceeds a c
 
 Agent Cash Cow OS has two different public proof surfaces, and they answer different questions:
 
-- **[Interactive Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow)** — for a buyer or non-technical reviewer. It uses synthetic scenarios to show what happens when an autonomous agent faces payment acknowledgement ambiguity, incomplete provider readback, replay risk or missing outcome evidence. No account or real money is required.
+- **[Interactive Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow)** — for a buyer or non-technical reviewer. It opens with a buyer-first 15-second timeout story and one-click guided failure run, then expands into synthetic scenarios for payment acknowledgement ambiguity, incomplete provider readback, replay risk and missing outcome evidence. No account or real money is required.
 - **This GitHub repository** — for technical review. It focuses on forecast-evidence/runtime discipline: bound evidence, structured output, provider-state checks, cost/latency limits, replay/claim handling and deterministic acceptance.
 
 Neither surface is the private production OS, and neither proves paid adoption, forecast advantage, customer ROI or production-scale economics. Those remain separate evidence requirements.
