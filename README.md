@@ -14,12 +14,13 @@ A run can still be unsafe or unusable if it uses the wrong evidence, exceeds a c
 
 ## Start with the right proof surface
 
-Agent Cash Cow OS has two different public proof surfaces, and they answer different questions:
+Agent Cash Cow OS now has three bounded public proof surfaces, and they answer different questions:
 
 - **[Interactive Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow)** — for a buyer or non-technical reviewer. It opens with a buyer-first 15-second timeout story and one-click guided failure run, then expands into synthetic scenarios for payment acknowledgement ambiguity, incomplete provider readback, replay risk and missing outcome evidence. No account or real money is required.
-- **This GitHub repository** — for technical review. It focuses on forecast-evidence/runtime discipline: bound evidence, structured output, provider-state checks, cost/latency limits, replay/claim handling and deterministic acceptance.
+- **[Transaction reliability source proof](https://github.com/SamCT86/agent-cash-cow-os)** — for reviewers who want the synthetic transaction state machine, deterministic proof receipts, failure scenarios, tests and explicit public/private boundary in source form.
+- **This GitHub repository** — for technical review of the separate forecast-evidence/runtime discipline: bound evidence, structured output, provider-state checks, cost/latency limits, replay/claim handling and deterministic acceptance.
 
-Neither surface is the private production OS, and neither proves paid adoption, forecast advantage, customer ROI or production-scale economics. Those remain separate evidence requirements.
+None of these surfaces is the private production OS, and none proves paid adoption, forecast advantage, customer ROI or production-scale economics. Those remain separate evidence requirements.
 
 If you are evaluating a concrete AI-agent workflow, use the Transaction Lab for the fast business-risk walkthrough, then inspect this repository for implementation-level proof. For a current engagement or technical discussion, use the [portfolio](https://sarmadtawfeek.se) or [email](mailto:sarmadtawfeek@gmail.com).
 
@@ -97,6 +98,7 @@ This public reference exists only to make a bounded part of the engineering appr
 
 ## Related commercial work
 
+- [Agent Cash Cow OS transaction reliability proof](https://github.com/SamCT86/agent-cash-cow-os) — synthetic payment-state reconciliation, replay containment and outcome-gated settlement proof.
 - [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — verify observed outcome before trusting success or retry.
 - [Portfolio](https://sarmadtawfeek.se) — live public overview of the current product and engineering proof surface.
 
