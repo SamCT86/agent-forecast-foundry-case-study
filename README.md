@@ -1,40 +1,32 @@
-# Agent Cash Cow OS — Forecast Evidence public reference
+# Agent Cash Cow OS: checking an agent's answer
 
-[![Public Agent Runtime Reference](https://github.com/SamCT86/agent-forecast-foundry-case-study/actions/workflows/reference-tests.yml/badge.svg)](https://github.com/SamCT86/agent-forecast-foundry-case-study/actions/workflows/reference-tests.yml)
+An AI agent can give a convincing answer and still use the wrong evidence, take too long, or cost more than allowed.
 
-**Status:** runnable public engineering reference for Agent Cash Cow OS  
-**Commercial product:** Agent Cash Cow OS  
-**Production system:** private
+This small reference shows the checks I use before accepting an agent's output. You can run it, change the inputs, and see which cases get rejected.
 
-Agent Cash Cow OS is one of the two commercial product tracks I present publicly.
+This repository uses synthetic examples. It shows how the checks behave; it doesn't establish better forecasts or customer results. The full system remains private.
 
-The current product hypothesis centers on **forecast evidence and measurable decision advantage for autonomous agents**. This repository does not expose the private production OS. It publishes one bounded engineering pattern from that direction: an agent run should not be accepted merely because a model returned an answer.
+## Try it locally
 
-A run can still be unsafe or unusable if it uses the wrong evidence, exceeds a cost or latency limit, returns incomplete provider state, or stores data that should not be persisted. This reference makes those checks reviewable in code.
+With Node.js 22 installed:
 
-## Start with the right proof surface
+```bash
+npm test
+npm run eval
+```
 
-Agent Cash Cow OS now has three bounded public proof surfaces, and they answer different questions:
+The default tests don't call a live model or spend API budget.
 
-- **[Interactive Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow)** — for a buyer or non-technical reviewer. It opens with a buyer-first 15-second timeout story and one-click guided failure run, then expands into synthetic scenarios for payment acknowledgement ambiguity, incomplete provider readback, replay risk and missing outcome evidence. No account or real money is required.
-- **[Transaction reliability source proof](https://github.com/SamCT86/agent-cash-cow-os)** — for reviewers who want the synthetic transaction state machine, deterministic proof receipts, failure scenarios, tests and explicit public/private boundary in source form.
-- **This GitHub repository** — for technical review of the separate forecast-evidence/runtime discipline: bound evidence, structured output, provider-state checks, cost/latency limits, replay/claim handling and deterministic acceptance.
+If you want a quick introduction to the broader project, [try the Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow). For the payment demo's source, see [Agent Cash Cow OS](https://github.com/SamCT86/agent-cash-cow-os).
 
-None of these surfaces is the private production OS, and none proves paid adoption, forecast advantage, customer ROI or production-scale economics. Those remain separate evidence requirements.
+## Have an agent workflow you don't fully trust?
 
-If you are evaluating a concrete AI-agent workflow, use the Transaction Lab for the fast business-risk walkthrough, then inspect this repository for implementation-level proof.
+[Email me a few sentences](mailto:sarmadtawfeek@gmail.com) about the problem. We can start with a workflow review or a reliability check. We'll agree on scope and price before starting. Please leave out sensitive data.
 
-## Commercial entry point
+[Portfolio](https://www.sarmadtawfeek.com) · [GitHub profile](https://github.com/SamCT86)
 
-If you already run AI or integrations but do not fully trust their failure behavior, the closest current engagement is a **Reliability review**: failure, duplicate-action and handoff testing plus a prioritized action list.
-
-If the business problem is still unclear, start with a **Workflow check**: establish a baseline, identify the biggest leak, estimate potential and recommend the next step.
-
-Start with **2–3 sentences** about what is slow, expensive or unreliable. No technical brief or meeting is required to start, and no sensitive data should be sent yet. Scope and price are agreed before anything is ordered.
-
-[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://www.sarmadtawfeek.com)
-
-This entry path does not change the repository's evidence boundary: this reference still does **not** prove paid adoption, forecast advantage, customer ROI or production-scale economics.
+<details>
+<summary>Code, tests and technical details</summary>
 
 ## How a run moves through the reference
 
@@ -119,3 +111,5 @@ MachineOutcome and Agent Cash Cow OS are the two commercial product tracks curre
 ## AI-native accountability
 
 This reference is AI-assisted. My role is problem framing, system direction, acceptance criteria, testing, verification and final release judgment. It is not a claim that I manually wrote every line.
+
+</details>
