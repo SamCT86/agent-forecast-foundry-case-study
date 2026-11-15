@@ -15,7 +15,7 @@ npm test
 npm run eval
 ```
 
-The default tests don't call a live model or spend API budget.
+The default tests don't call a live model or spend API budget. The runtime checks the included OpenAI adapter's cost estimate after the provider responds. The estimate uses token usage and the rates supplied with the request. The call can already have incurred cost when the result is rejected.
 
 If you want a quick introduction to the broader project, [try the Transaction Lab](https://www.sarmadtawfeek.com/agent-cash-cow). For the payment demo's source, see [Agent Cash Cow OS](https://github.com/SamCT86/agent-cash-cow-os).
 
@@ -78,7 +78,7 @@ The run fails closed when:
 - a persisted `runId` is reused with a different request fingerprint;
 - an active or stale conflicting claim attempts to reuse the same `runId`.
 
-An incomplete provider run is rejected before the journal is written. An exact sequential retry of an already-persisted `runId` returns the prior verified record without calling the provider again.
+An incomplete provider run is rejected before the journal is written. An exact sequential retry of an already-persisted `runId` returns the prior verified record without calling the provider again. If a claim expires while its provider call is still pending, the same run can start another call. A single journal row can therefore hide overlapping calls.
 
 ## What this proves — and what it does not
 
