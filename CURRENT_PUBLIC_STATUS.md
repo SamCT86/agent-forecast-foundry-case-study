@@ -9,7 +9,7 @@ The current product hypothesis centers on forecast evidence and measurable decis
 ## What is real today
 
 - The public runtime reference is runnable and tested.
-- Concurrent attempts for one `runId` are coordinated with a single-host filesystem claim; a two-process test verifies one provider execution and one journal record.
+- Fresh concurrent attempts for one `runId` are coordinated by a single-host filesystem claim. When a claim expires before its provider call settles, another call can start. See [the concurrency boundary](docs/CONCURRENCY.md).
 - The private Agent Cash Cow OS work includes broader request, payment, work, outcome and settlement mechanics.
 - Forecast identity, provenance, calibration and held-out evaluation remain important proof requirements.
 - Measured forecast advantage, a qualified external buyer, paid repeat use and production forecast deployment are not proven by this repository.

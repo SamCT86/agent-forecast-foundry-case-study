@@ -1,6 +1,6 @@
 # Single-host concurrency boundary
 
-This reference coordinates concurrent attempts for the same `runId` before a provider call is made.
+This reference coordinates concurrent attempts for the same `runId` while their claim stays fresh.
 
 The mechanism is intentionally small and inspectable:
 
@@ -23,12 +23,14 @@ The public test suite covers:
 - a conflicting in-flight fingerprint fails closed without a second provider call;
 - a stale readable conflicting fingerprint also fails closed before provider execution;
 - a stale malformed/empty claim can be reclaimed;
-- repeated eight-process contention over a stale claim still produces one provider execution and one journal record;
+- repeated eight-process contention over an empty, aged claim with no original worker produces one provider execution and one journal record;
 - a provider failure releases the claim so a later retry can proceed;
-- the journal still contains one verified record for the winning run.
+- in the fresh-claim and empty-claim tests, the journal contains one verified record for the winning run.
 
 ## What this does not prove
 
 This is not distributed exactly-once execution. The claim is local-filesystem coordination, not a consensus protocol or distributed lock service.
 
-A crash after an external provider side effect but before journal persistence can still lead to a later retry. That case requires provider-side idempotency or reconciliation against external state.
+An expired claim can be reclaimed while the original provider call is still pending. Overlapping calls can both append journal records. A later read returns the last matching record. When latency validation rejects one response, a single row can remain even after two calls.
+
+A crash after a provider-side effect and before journal persistence can also leave the outcome unknown. Use provider-side idempotency or reconcile with the original provider before retrying a consequential action.
